@@ -19,23 +19,38 @@ Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](
 $ npm install -g yo
 ```
 
-### Yeoman Generators
+## Usage
 
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-knockout-bootstrap from npm, run:
-
+Install `generator-knockout-bootstrap`:
 ```
 $ npm install -g generator-knockout-bootstrap
 ```
 
-Finally, initiate the generator:
+Make a new directory, and `cd` into it:
+```
+mkdir my-new-project && cd $_
+```
 
+Run `yo knockout-bootstrap`
 ```
 $ yo knockout-bootstrap
 ```
 
-### Getting To Know Yeoman
+Run `grunt` for building and `grunt serve` for preview
+
+## Dependencies
+
+* [Require.js](http://requirejs.org)
+* [Sass version of bootstrap](https://github.com/twbs/bootstrap-sass)
+
+### Options
+
+The generator will ask if you want the following options:
+
+* [Jade templating engine](http://jade-lang.org)
+* [Sammy.js (local routing)](http://sammyjs.org)
+
+## Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
 
