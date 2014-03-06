@@ -1,0 +1,45 @@
+{
+  "name": "generator-knockout-bootstrap",
+  "version": "0.0.1",
+  "description": "Yeoman generator for Knockout + Bootstrap",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/leszekhanusz/generator-knockout-bootstrap"
+  },
+  "author": {
+    "name": "Hanusz Leszek",
+    "email": "leszek.hanusz@gmail.com",
+    "url": "https://github.com/leszekhanusz"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "scaffold",
+    "framework",
+    "component",
+    "knockout",
+    "bootstrap"
+  ],
+  "dependencies": {
+    "yeoman-generator": "~0.16.0",
+    "rimraf": "latest",
+    "chalk": "~0.4.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "generator-mocha": ">=0.1.1",
+    "yo": ">=1.0.0"
+  }
+}

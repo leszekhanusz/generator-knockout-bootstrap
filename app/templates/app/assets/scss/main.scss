@@ -1,0 +1,15 @@
+$icon-font-path: "/bower_components/bootstrap-sass/fonts/";
+
+@import 'bootstrap-sass/lib/bootstrap';
+
+/* Align starter template */
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+/* Space out content a bit */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

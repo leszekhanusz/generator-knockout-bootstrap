@@ -1,0 +1,3 @@
+{
+    "directory": "<%= env.options.appPath %>/bower_components"
+}

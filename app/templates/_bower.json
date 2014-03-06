@@ -1,0 +1,11 @@
+{
+  "name": "<%= _.slugify(appname) %>",
+  "dependencies": {
+    "requirejs": "2.x",
+    "jquery": "2.x",
+    "knockout.js": "3.x",<% if(includeSammy) { %>
+    "sammy": "0.x",<% } %>
+    "bootstrap-sass": "3.x"
+  }
+}
+

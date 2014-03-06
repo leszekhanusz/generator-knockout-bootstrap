@@ -1,0 +1,14 @@
+ul.nav.navbar-nav<% if (includeSammy) { %>
+  li(data-bind="css: { active: chosenFolderId()==='home'}")
+    a(href='#') Home
+  li(data-bind="css: { active: chosenFolderId()==='about'}")
+    a(href='#about') About
+  li(data-bind="css: { active: chosenFolderId()==='contact'}")
+    a(href='#contact') Contact<% } else { %>
+  li.active
+    a(href='#') Home
+  li
+    a(href='#about') About
+  li
+    a(href='#contact') Contact<% } %>
+ 
