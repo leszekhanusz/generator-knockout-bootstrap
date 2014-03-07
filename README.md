@@ -47,7 +47,7 @@ Run `grunt` for building and `grunt serve` for preview
 
 The generator will ask if you want the following options:
 
-* [Jade templating engine](http://jade-lang.org)
+* [Jade templating engine](http://jade-lang.com)
 * [Sammy.js (local routing)](http://sammyjs.org)
 * [Font Awesome icons](http://fortawesome.github.io/Font-Awesome)
 
