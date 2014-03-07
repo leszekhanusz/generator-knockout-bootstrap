@@ -3,7 +3,7 @@
 /* global define:true*/
 define(['jquery',
     'knockout'<% if(includeSammy) { %>,
-    'assets/js/models/sammyViewModel.js'<% } %>
+    '../../../assets/js/models/sammyViewModel.js'<% } %>
     ], function ($, ko<% if(includeSammy) { %>, SammyViewModel<% } %>) {
   return function () {
     var self = this;
