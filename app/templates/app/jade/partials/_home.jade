@@ -1,5 +1,12 @@
 .starter-template
   h1 <%= appname %> running!
-  p
-    | Knockout data binding:
-    span.status(data-bind='text: status') Inactive
+  .row
+    p.col-md-6.col-md-offset-3.entry-home(data-bind="css: { 'alert-success': status()==='active', 'alert-warning': status()!=='active'}")
+      | Knockout data binding:
+      span.status(data-bind='text: status') Inactive<% if (includeFontAwesome) { %>
+  .row
+    p.col-md-6.col-md-offset-3.entry-home.alert-success
+      span
+        a(href='http://fortawesome.github.io/Font-Awesome') Font Awesome icons 
+        | are available
+      i.fa.fa-check-square-o<% } %>

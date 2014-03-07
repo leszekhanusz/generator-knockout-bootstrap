@@ -49,6 +49,7 @@ The generator will ask if you want the following options:
 
 * [Jade templating engine](http://jade-lang.org)
 * [Sammy.js (local routing)](http://sammyjs.org)
+* [Font Awesome icons](fortawesome.github.io/Font-Awesome)
 
 ## Getting To Know Yeoman
 

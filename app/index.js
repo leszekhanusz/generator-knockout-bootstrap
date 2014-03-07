@@ -14,7 +14,8 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
 
     this.config.defaults({
       includeJade: this.includeJade,
-      includeSammy: this.includeSammy
+      includeSammy: this.includeSammy,
+      includeFontAwesome: this.includeFontAwesome
     });
   
     this.on('end', function () {
@@ -103,6 +104,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       name: 'sammy',
       message: 'Would you like to use sammy.js for local routing (http://sammyjs.org) ?',
       default: true
+    }, {
+      type: 'confirm',
+      name: 'fontAwesome',
+      message: 'Would you like to use the font-awesome icons (http://fortawesome.github.io/Font-Awesome) ?',
+      default: true
     }];
 
     this.prompt(prompts, function (answers) {
@@ -116,6 +122,7 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       this.removeJadeAfterInstall = !answers.jade
 
       this.includeSammy = answers.sammy;
+      this.includeFontAwesome = answers.fontAwesome;
 
       if(!this.options.includeJade) {
         // See comment above, here the real includeJade is saved
@@ -126,6 +133,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       if(!this.options.includeSammy) {
         this.options.includeSammy = this.includeSammy;
         this.config.set('includeSammy', this.includeSammy);
+      }
+
+      if(!this.options.includeFontAwesome) {
+        this.options.includeFontAwesome = this.includeFontAwesome;
+        this.config.set('includeFontAwesome', this.includeFontAwesome);
       }
 
       done();
@@ -144,7 +156,7 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
 
     this.copy('app/favicon.ico', this.env.options.appPath + '/favicon.ico');
     this.copy('app/robots.txt', this.env.options.appPath + '/robots.txt');
-    this.copy('app/assets/scss/main.scss', this.env.options.appPath + '/assets/scss/main.scss');
+    this.template('app/assets/scss/main.scss', this.env.options.appPath + '/assets/scss/main.scss');
     this.copy('app/assets/js/config.js', this.env.options.appPath + '/assets/js/config.js');
     this.template('app/assets/js/main.js', this.env.options.appPath + '/assets/js/main.js');
     this.template('app/assets/js/models/appViewModel.js', this.env.options.appPath + '/assets/js/models/appViewModel.js');
