@@ -136,6 +136,7 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
     this.mkdir(this.env.options.appPath);
     this.mkdir(this.env.options.appPath + '/assets');
     this.mkdir(this.env.options.appPath + '/assets/js');
+    this.mkdir(this.env.options.appPath + '/assets/js/models');
     this.mkdir(this.env.options.appPath + '/assets/css');
     this.mkdir(this.env.options.appPath + '/assets/scss');
     this.mkdir(this.env.options.appPath + '/assets/images');
@@ -146,6 +147,10 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
     this.copy('app/assets/scss/main.scss', this.env.options.appPath + '/assets/scss/main.scss');
     this.copy('app/assets/js/config.js', this.env.options.appPath + '/assets/js/config.js');
     this.template('app/assets/js/main.js', this.env.options.appPath + '/assets/js/main.js');
+    this.template('app/assets/js/models/appViewModel.js', this.env.options.appPath + '/assets/js/models/appViewModel.js');
+    if (this.includeSammy) {
+      this.template('app/assets/js/models/sammyViewModel.js', this.env.options.appPath + '/assets/js/models/sammyViewModel.js');
+    }
 
     this.mkdir('test');
     this.mkdir('test/spec');

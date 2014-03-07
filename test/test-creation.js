@@ -35,6 +35,8 @@ describe('knockout-bootstrap generator', function () {
       'app/assets/scss/main.scss',
       'app/assets/js/config.js',
       'app/assets/js/main.js',
+      'app/assets/js/models/appViewModel.js',
+      'app/assets/js/models/sammyViewModel.js',
       'app/jade/index.jade',
       'app/jade/partials/_home.jade',
       'app/jade/partials/_contact.jade',

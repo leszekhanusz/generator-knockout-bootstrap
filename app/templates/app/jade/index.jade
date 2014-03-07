@@ -2,9 +2,9 @@ extends partials/_bootstrap_layout.jade
 
 block maincontainer
   .container
-    #home<% if (includeSammy) { %>(style='display:none;', data-bind='visible: chosenFolderId()===\'home\'')<% } %>
+    #home<% if (includeSammy) { %>(style='display:none;', data-bind='visible: sammy.chosenFolderId()===\'home\'')<% } %>
       include partials/_home.jade<% if (includeSammy) { %> 
-    #about(style='display:none;', data-bind='visible: chosenFolderId()===\'about\'')
+    #about(style='display:none;', data-bind='visible: sammy.chosenFolderId()===\'about\'')
       include partials/_about.jade
-    #contact(style='display:none;', data-bind='visible: chosenFolderId()===\'contact\'')
+    #contact(style='display:none;', data-bind='visible: sammy.chosenFolderId()===\'contact\'')
       include partials/_contact.jade<% } %> 

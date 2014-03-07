@@ -1,9 +1,9 @@
 ul.nav.navbar-nav<% if (includeSammy) { %>
-  li(data-bind="css: { active: chosenFolderId()==='home'}")
+  li(data-bind="css: { active: sammy.chosenFolderId()==='home'}")
     a(href='#') Home
-  li(data-bind="css: { active: chosenFolderId()==='about'}")
+  li(data-bind="css: { active: sammy.chosenFolderId()==='about'}")
     a(href='#about') About
-  li(data-bind="css: { active: chosenFolderId()==='contact'}")
+  li(data-bind="css: { active: sammy.chosenFolderId()==='contact'}")
     a(href='#contact') Contact<% } else { %>
   li.active
     a(href='#') Home
