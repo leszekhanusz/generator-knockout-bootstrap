@@ -4,13 +4,17 @@ require.config({
   paths: {
     'bower_components': '../../bower_components',
     'jquery': '../../bower_components/jquery/dist/jquery',<% if(includeSammy) { %>
-    'sammy': '../../bower_components/sammy/lib/sammy',<% } %>
+    'sammy': '../../bower_components/sammy/lib/sammy',<% } %><% if(includeSammy) { %>
+    'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',<% } %>
     'jquery.bootstrap': '../../bower_components/bootstrap-sass/dist/js/bootstrap'
   },
   shim: {
     'jquery.bootstrap': {
       deps: ['jquery']
-    }
+    }<% if(includeSocketIO) { %>,
+    'socket.io-client': {
+      exports: 'io'
+    }<% } %>
   },
   map: {
     '*': {

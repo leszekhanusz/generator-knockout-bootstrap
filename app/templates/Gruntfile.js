@@ -1,10 +1,13 @@
 'use strict';
-var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
+var TEST_PORT = 9000;
+var LIVERELOAD_PORT = 35729;<% if (includeSocketIO) { %>
+// the livereload script is not inserted when running grunt test
+// if the TEST_PORT is not 9000. You win a cookie if you find why<% } else { %>
 var liveReloadSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
-};
+};<% } %>
 
 module.exports = function (grunt) {
 
@@ -31,6 +34,37 @@ module.exports = function (grunt) {
     // Task configuration.
     clean: {
       dist: ['dist/*']
+    },
+    wait: {
+      longtime: {
+        options: {
+          delay: 1000000
+        }
+      }
+    },
+    replace: {
+      dist: {
+        src: '<%%= yeoman.app %>/assets/scss/main.scss',
+        overwrite: true,
+        replacements: [{
+          from: /\$icon\-font\-path:.*/g,
+          to: '$icon-font-path: \'../fonts\';'<% if (includeFontAwesome) { %>
+        }, {
+          from: /\$fa\-font\-path:.*/g,
+          to: '$fa-font-path: \'../fonts\';'<% } %>
+        }]
+      },
+      server: {
+        src: '<%%= yeoman.app %>/assets/scss/main.scss',
+        overwrite: true,
+        replacements: [{
+          from: /\$icon\-font\-path:.*/g,
+          to: '$icon-font-path: \'../../bower_components/bootstrap-sass/fonts\';'<% if (includeFontAwesome) { %>
+        }, {
+          from: /\$fa\-font\-path:.*/g,
+          to: '$fa-font-path: \'../../bower_components/font-awesome/fonts\';'<% } %>
+        }]
+      }
     },
     copy: {
       html: {
@@ -69,7 +103,19 @@ module.exports = function (grunt) {
             ]
           }
         ]
-      },
+      },<% if (includeFontAwesome) { %>
+      fontawesome: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%%= yeoman.app %>/bower_components/font-awesome/fonts',
+            dest: 'dist/assets/fonts',
+            src: [
+              '*'
+            ]
+          }
+        ]
+      },<% } %>
       projectfiles: {
         files: [
           {
@@ -145,8 +191,16 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
-          urls: ['http://localhost:<%%= connect.test.options.port %>/index.html']
+          urls: ['http://localhost:' + TEST_PORT + '/index.html']
         }
+      }
+    },
+    focus: {
+      dev: {
+        exclude: ['test']
+      },
+      test: {
+        include: ['test']
       }
     },
     watch: {
@@ -176,7 +230,10 @@ module.exports = function (grunt) {
         tasks: ['compass:server']
       },
       test: {
-        files: ['<%%= yeoman.app %>/scripts/{,*/}/*.js', 'test/spec/**.*.js'],
+        options: {
+          livereload: LIVERELOAD_PORT
+        },
+        files: ['<%%= yeoman.app %>/assets/js/{,*/}/*.js', 'test/spec/{,*/}/*.js'],
         tasks: ['test:true']
       }
     },<% if (includeJade) { %>
@@ -205,7 +262,7 @@ module.exports = function (grunt) {
           optimize: 'none'
         }
       }
-    },
+    },<% if(!includeSocketIO) { %>
     connect: {
       options: {
         port: SERVER_PORT,
@@ -225,13 +282,12 @@ module.exports = function (grunt) {
       },
       production: {
         options: {
-          keepalive: true,
           base: 'dist'
         }
       },
       test: {
         options: {
-          port: 9001,
+          port: TEST_PORT,
           middleware: function (connect) {
             return [
               liveReloadSnippet,
@@ -241,19 +297,46 @@ module.exports = function (grunt) {
           }
         }
       }
-    },
+    },<% } %>
     open: {
       server: {
-        path: 'http://localhost:<%%= connect.options.port %>'
+        path: 'http://localhost:' + SERVER_PORT
       },
       test: {
-        path: 'http://localhost:<%%= connect.test.options.port %>'
+        path: 'http://localhost:' + TEST_PORT
       }
-    }
+    }<% if (includeSocketIO) { %>,
+    express: {
+      /* jshint camelcase: false */
+      options: {
+        port: SERVER_PORT,
+        script: 'server/server.js'
+      },
+      server: {
+        options: {
+          debug: true,
+          node_env: 'development'
+        }
+      },
+      dist: {
+        options: {
+          debug: false,
+          node_env: 'production'
+        }
+      },
+      test: {
+        options: {
+          port: TEST_PORT,
+          debug: true,
+          node_env: 'test'
+        }
+      }
+    }<% } %>
   });
 
   grunt.registerTask('build', [
     'clean:dist',
+    'replace:dist',
     'compass:dist',<% if (includeJade) { %>
     'jade:html',<% } %>
     'requirejs',
@@ -269,14 +352,23 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['jshint', 'build', 'open:server', 'connect:production']);
+      return grunt.task.run([
+        'jshint',
+        'build',<% if (includeSocketIO) { %>
+        'express:dist',<% } else { %>
+        'connect:production',<% } %>
+        'open:server',
+        'wait:longtime'
+      ]);
     }
 
     grunt.task.run([
-      'compass:server',
-      'connect:livereload',
+      'replace:server',
+      'compass:server',<% if (includeSocketIO) { %>
+      'express:server',<% } else { %>
+      'connect:livereload',<% } %>
       'open:server',
-      'watch'
+      'focus:dev'
     ]);
   });
 
@@ -285,17 +377,20 @@ module.exports = function (grunt) {
     isConnected = Boolean(isConnected);
     var testTasks = [
       'clean',
-      'compass',
-      'connect:test',
+      'replace:server',
+      'compass',<% if (includeSocketIO) { %>
+      'express:test',<% } else { %>
+      'connect:test',<% } %>
       'mocha',
       'open:test',
-      'watch:test'
+      'focus:test'
     ];
 
     if (isConnected) {
       // already connected so not going to connect again, remove the connect:test task
-      testTasks.splice(testTasks.indexOf('connect:test'), 1);
-      testTasks.splice(testTasks.indexOf('open:test'), 1);
+      testTasks.splice(testTasks.indexOf('open:test'), 1);<% if (includeSocketIO) { %>
+      testTasks.splice(testTasks.indexOf('express:test'), 1);<% } else { %>
+      testTasks.splice(testTasks.indexOf('connect:test'), 1);<% } %>
     }
 
     return grunt.task.run(testTasks);

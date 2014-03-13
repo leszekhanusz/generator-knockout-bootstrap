@@ -5,7 +5,8 @@
     "jquery": "2.x",
     "knockout.js": "3.x",<% if (includeSammy) { %>
     "sammy": "0.x",<% } %><% if (includeFontAwesome) { %>
-    "font-awesome": "4.x",<% } %>
+    "font-awesome": "4.x",<% } %><% if (includeSocketIO) { %>
+    "socket.io-client": "~0.9.16",<% } %>
     "bootstrap-sass": "3.x"
   }
 }
