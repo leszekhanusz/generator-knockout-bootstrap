@@ -1,0 +1,27 @@
+/* Align starter template */
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.starter-template > h1 {
+  padding-bottom: 20px;
+}
+
+/* Space out content a bit */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* some nice centered entries */
+.entry-home {
+    padding: 15px 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.entry-home > i {
+    padding-left: 10px;
+}

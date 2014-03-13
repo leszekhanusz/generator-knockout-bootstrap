@@ -168,6 +168,7 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
     this.copy('app/favicon.ico', this.env.options.appPath + '/favicon.ico');
     this.copy('app/robots.txt', this.env.options.appPath + '/robots.txt');
     this.template('app/assets/scss/main.scss', this.env.options.appPath + '/assets/scss/main.scss');
+    this.template('app/assets/scss/_app.scss', this.env.options.appPath + '/assets/scss/_app.scss');
     this.copy('app/assets/js/config.js', this.env.options.appPath + '/assets/js/config.js');
     this.template('app/assets/js/main.js', this.env.options.appPath + '/assets/js/main.js');
     this.template('app/assets/js/models/appViewModel.js', this.env.options.appPath + '/assets/js/models/appViewModel.js');
