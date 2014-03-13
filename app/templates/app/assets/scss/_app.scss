@@ -2,11 +2,12 @@
 .starter-template {
   padding: 40px 15px;
   text-align: center;
+
+  h1 {
+    padding-bottom: 20px;
+  }
 }
 
-.starter-template > h1 {
-  padding-bottom: 20px;
-}
 
 /* Space out content a bit */
 body {
@@ -20,8 +21,8 @@ body {
     border-radius: 4px;
     text-align: center;
     font-weight: bold;
-}
 
-.entry-home > i {
-    padding-left: 10px;
+    i {
+        padding-left: 10px;
+    }
 }
