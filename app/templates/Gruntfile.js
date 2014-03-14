@@ -85,8 +85,8 @@ module.exports = function (grunt) {
               /data-main=\"assets\/js\/config\" src=\"bower_components\/requirejs\/require\.js\"/g,
               'src="assets/js/require.min.js"'
               ).replace(
-              //Don't use debug version of knockout.js
-              /<script>window\.knockoutDebug = true;<\/script>/g,
+              //Remove flag specifying we are in dev mode
+              /<script>window\.knockoutBootstrapDebug = true;<\/script>/g,
               ''
               );
           }

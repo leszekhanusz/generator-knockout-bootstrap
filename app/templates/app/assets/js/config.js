@@ -26,7 +26,7 @@ require.config({
 
 // Use the debug version of knockout in development only
 /* global window:true*/
-if (window.knockoutDebug) {
+if (window.knockoutBootstrapDebug) {
   require.config({
     map: {
       '*': {
