@@ -1,7 +1,6 @@
 'use strict';
 
 /* global io:true*/
-/* global alert:true*/
 /* global define:true*/
 define(['socket.io-client'
     ], function () {
@@ -13,11 +12,16 @@ define(['socket.io-client'
 
     var socket = io.connect('http://localhost');
 
-    console.log('connection');
+    // Events
 
-    socket.on('pong', function () {
-      console.log('pong');
-      alert('pong');
+    socket.on('message', function (data) {
+      UI.messageReceived(UI.messageReceived() + data.message + '\n');
     });
+
+    // Actions
+
+    self.sendBroadcastMessage = function () {
+      socket.emit('send_message', {message: self.UI.message()});
+    };
   };
 });

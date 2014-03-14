@@ -15,5 +15,10 @@ define(['jquery',
     // Sammy view model for local navigation
     self.sammy = new SammyViewModel();
     <% } %>
+    <% if(includeSocketIO) { %> 
+    // Socket IO example observables
+    self.message = ko.observable('');
+    self.messageReceived = ko.observable('');
+    <% } %>
   };
 });

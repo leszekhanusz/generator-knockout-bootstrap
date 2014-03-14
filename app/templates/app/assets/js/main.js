@@ -12,7 +12,7 @@ define(['jquery',
 
   // creating new object to manage socket.io events / connection
   // this object has the knockout view model as parameter
-  new AppSocketIO(UI);<% } %>
+  UI.socketIO = new AppSocketIO(UI);<% } %>
 
   ko.applyBindings(UI);
 

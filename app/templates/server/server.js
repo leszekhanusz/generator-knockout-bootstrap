@@ -38,8 +38,12 @@ app.use(express.static(__dirname + '/../' + app.get('rootFolder')));
 
 io.sockets.on('connection', function (socket) {
 
-  socket.on('ping', function () {
-    socket.emit('pong');
+  socket.on('send_message', function (data) {
+    if(data.message) {
+      // Sending message to all connected clients
+      console.log('send_message ' + data.message);
+      io.sockets.emit('message', {message: data.message});
+    }
   });
 
 });

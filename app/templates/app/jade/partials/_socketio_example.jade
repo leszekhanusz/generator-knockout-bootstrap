@@ -1,0 +1,17 @@
+.row
+  .col-md-6.col-md-offset-3
+    h2 Socket.io example
+    .row.well
+      p.small Check the javascript console in development mode to see the websockets messages exchanged
+      form.form-horizontal(role='form')
+        .form-group
+          label.col-sm-2.control-label(for='messagetext') Message
+          .col-sm-10
+            input#message_text.form-control(type='text', placeholder='Write your message here', data-bind="value: message")
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            button.btn.btn-default(type='submit', data-bind="click: socketIO.sendBroadcastMessage") Send Broadcast Message
+        .form-group(data-bind="visible: messageReceived")
+          label.col-sm-2.control-label Received
+          .col-sm-10
+            pre(data-bind="text: messageReceived")

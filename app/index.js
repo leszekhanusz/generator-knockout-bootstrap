@@ -130,23 +130,23 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       this.includeFontAwesome = answers.fontAwesome;
       this.includeSocketIO = answers.socketIO;
 
-      if(!this.options.includeJade) {
+      if (!this.options.includeJade) {
         // See comment above, here the real includeJade is saved
         this.options.includeJade = answers.jade;
         this.config.set('includeJade', answers.jade);
       }
 
-      if(!this.options.includeSammy) {
+      if (!this.options.includeSammy) {
         this.options.includeSammy = this.includeSammy;
         this.config.set('includeSammy', this.includeSammy);
       }
 
-      if(!this.options.includeFontAwesome) {
+      if (!this.options.includeFontAwesome) {
         this.options.includeFontAwesome = this.includeFontAwesome;
         this.config.set('includeFontAwesome', this.includeFontAwesome);
       }
 
-      if(!this.options.includeSocketIO) {
+      if (!this.options.includeSocketIO) {
         this.options.includeSocketIO = this.includeSocketIO;
         this.config.set('includeSocketIO', this.includeSocketIO);
       }
@@ -164,6 +164,10 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
     this.mkdir(this.env.options.appPath + '/assets/scss');
     this.mkdir(this.env.options.appPath + '/assets/images');
     this.mkdir(this.env.options.appPath + '/assets/fonts');
+    this.mkdir(this.env.options.appPath + '/jade');
+    this.mkdir(this.env.options.appPath + '/jade/partials');
+    this.mkdir('test');
+    this.mkdir('test/spec');
 
     this.copy('app/favicon.ico', this.env.options.appPath + '/favicon.ico');
     this.copy('app/robots.txt', this.env.options.appPath + '/robots.txt');
@@ -172,35 +176,29 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
     this.copy('app/assets/js/config.js', this.env.options.appPath + '/assets/js/config.js');
     this.template('app/assets/js/main.js', this.env.options.appPath + '/assets/js/main.js');
     this.template('app/assets/js/models/appViewModel.js', this.env.options.appPath + '/assets/js/models/appViewModel.js');
-    if (this.includeSammy) {
-      this.template('app/assets/js/models/sammyViewModel.js', this.env.options.appPath + '/assets/js/models/sammyViewModel.js');
-    }
+    this.template('app/jade/index.jade', this.env.options.appPath + '/jade/index.jade');
+    this.template('app/jade/partials/_bootstrap_layout.jade', this.env.options.appPath + '/jade/partials/_bootstrap_layout.jade');
+    this.template('app/jade/partials/_home.jade', this.env.options.appPath + '/jade/partials/_home.jade');
+    this.copy('app/jade/partials/_scripts.jade', this.env.options.appPath + '/jade/partials/_scripts.jade');
+    this.template('app/jade/partials/_leftmenutabs.jade', this.env.options.appPath + '/jade/partials/_leftmenutabs.jade');
 
     if (this.includeSocketIO) {
       this.template('app/assets/js/appSocketIO.js', this.env.options.appPath + '/assets/js/appSocketIO.js');
       this.mkdir('server');
       this.template('server/server.js');
+      this.template('app/jade/partials/_socketio_example.jade', this.env.options.appPath + '/jade/partials/_socketio_example.jade');
     }
-
-    this.mkdir('test');
-    this.mkdir('test/spec');
 
     this.copy('test/index.html');
     this.copy('test/bower.json');
     this.copy('test/bowerrc', 'test/.bowerrc');
     this.copy('test/spec/test.js');
 
-    this.mkdir(this.env.options.appPath + '/jade');
-    this.mkdir(this.env.options.appPath + '/jade/partials');
-    this.template('app/jade/index.jade', this.env.options.appPath + '/jade/index.jade');
-    this.template('app/jade/partials/_bootstrap_layout.jade', this.env.options.appPath + '/jade/partials/_bootstrap_layout.jade');
-    this.template('app/jade/partials/_home.jade', this.env.options.appPath + '/jade/partials/_home.jade');
     if (this.includeSammy) {
+      this.template('app/assets/js/models/sammyViewModel.js', this.env.options.appPath + '/assets/js/models/sammyViewModel.js');
       this.copy('app/jade/partials/_about.jade', this.env.options.appPath + '/jade/partials/_about.jade');
       this.copy('app/jade/partials/_contact.jade', this.env.options.appPath + '/jade/partials/_contact.jade');
     }
-    this.copy('app/jade/partials/_scripts.jade', this.env.options.appPath + '/jade/partials/_scripts.jade');
-    this.template('app/jade/partials/_leftmenutabs.jade', this.env.options.appPath + '/jade/partials/_leftmenutabs.jade');
   },
 
   projectfiles: function () {
