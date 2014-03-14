@@ -114,6 +114,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       name: 'socketIO',
       message: 'Would you like to use the socket.io library (http://socket.io) ?',
       default: true
+    }, {
+      type: 'confirm',
+      name: 'validation',
+      message: 'Would you like to use the knockout.validation library ?',
+      default: true
     }];
 
     this.prompt(prompts, function (answers) {
@@ -129,6 +134,7 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       this.includeSammy = answers.sammy;
       this.includeFontAwesome = answers.fontAwesome;
       this.includeSocketIO = answers.socketIO;
+      this.includeValidation = answers.validation;
 
       if (!this.options.includeJade) {
         // See comment above, here the real includeJade is saved
@@ -149,6 +155,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       if (!this.options.includeSocketIO) {
         this.options.includeSocketIO = this.includeSocketIO;
         this.config.set('includeSocketIO', this.includeSocketIO);
+      }
+
+      if (!this.options.includeValidation) {
+        this.options.includeValidation = this.includeValidation;
+        this.config.set('includeValidation', this.includeValidation);
       }
 
       done();

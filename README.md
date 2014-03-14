@@ -51,6 +51,7 @@ The generator will ask if you want the following options:
 * [Sammy.js (local routing)](http://sammyjs.org)
 * [Font Awesome icons](http://fortawesome.github.io/Font-Awesome)
 * [Socket.io (full stack)](http://socket.io)
+* [Knockout.validation](https://github.com/Knockout-Contrib/Knockout-Validation)
 
 ## Getting To Know Yeoman
 

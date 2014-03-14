@@ -3,15 +3,19 @@
 require.config({
   paths: {
     'bower_components': '../../bower_components',
-    'jquery': '../../bower_components/jquery/dist/jquery',<% if(includeSammy) { %>
-    'sammy': '../../bower_components/sammy/lib/sammy',<% } %><% if(includeSocketIO) { %>
-    'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',<% } %>
+    'jquery': '../../bower_components/jquery/dist/jquery',<% if (includeSammy) { %>
+    'sammy': '../../bower_components/sammy/lib/sammy',<% } %><% if (includeSocketIO) { %>
+    'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',<% } %><% if (includeValidation) { %>
+    'knockout.validation': '../../bower_components/knockout.validation/Dist/knockout.validation',<% } %>
     'jquery.bootstrap': '../../bower_components/bootstrap-sass/dist/js/bootstrap'
   },
   shim: {
     'jquery.bootstrap': {
       deps: ['jquery']
-    }<% if(includeSocketIO) { %>,
+    }<% if(includeValidation) { %>,
+    'knockout.validation': {
+      deps: ['knockout']
+    }<% } %><% if(includeSocketIO) { %>,
     'socket.io-client': {
       exports: 'io'
     }<% } %>

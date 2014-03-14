@@ -6,7 +6,8 @@
     "knockout.js": "3.x",<% if (includeSammy) { %>
     "sammy": "0.x",<% } %><% if (includeFontAwesome) { %>
     "font-awesome": "4.x",<% } %><% if (includeSocketIO) { %>
-    "socket.io-client": "~0.9.16",<% } %>
+    "socket.io-client": "~0.9.16",<% } %><% if (includeValidation) { %>
+    "knockout.validation": "^1.0.2",<% } %>
     "bootstrap-sass": "3.x"
   }
 }

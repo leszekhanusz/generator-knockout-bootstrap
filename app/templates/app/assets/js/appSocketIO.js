@@ -50,8 +50,11 @@ define(['socket.io-client'
 
     // Actions
 
-    self.sendBroadcastMessage = function () {
-      socket.emit('send_message', {message: self.UI.message()});
+    self.sendBroadcastMessage = function () {<% if (includeValidation) { %>
+      if (UI.message.isValid()) {
+        socket.emit('send_message', {message: self.UI.message()});
+      }<% } else { %>
+      socket.emit('send_message', {message: self.UI.message()});<% } %>
     };
   };
 });
