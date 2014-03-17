@@ -8,16 +8,34 @@ module.exports = function(grunt) {
         dest: 'CHANGELOG.md'
       }
     },
-    release: {
+    bump: {
       options: {
-        tagName: 'v<%= version %>'
+        commitFiles: ['package.json', 'CHANGELOG.md'],
+        pushTo: 'origin'
       }
     }
   });
 
-  grunt.registerTask('message', function() {
-    grunt.log.writeln("use grunt release:{patch|minor|major}");
+  grunt.registerTask('howtouse', function() {
+    grunt.log.error("use grunt bump-only:{patch|minor} then grunt changelog then grunt bump-commit");
   });
 
-  grunt.registerTask('default', ['message']);
+  grunt.registerTask('release', 'Release new version', function (type) {
+    if(!type) type = 'patch';
+    if (!(type === 'minor' || type === 'patch')) {
+      grunt.log.writeln('Use grunt release:patch or grunt release:minor');
+      grunt.task.run('howtouse');
+      return;
+    }
+
+    // The following code does not work because bump-only is async
+    //grunt.task.run('bump-only:' + type);
+    //grunt.config.set('pkg', grunt.file.readJSON('package.json'));
+    //var pkg = grunt.config.get('pkg');
+    //grunt.log.writeln('version is ' + pkg.version);
+    //grunt.task.run('changelog');
+    //grunt.task.run('bump-commit');
+  });
+
+  grunt.registerTask('default', ['howtouse']);
 };
