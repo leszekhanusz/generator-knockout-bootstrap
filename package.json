@@ -1,6 +1,6 @@
 {
   "name": "generator-knockout-bootstrap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yeoman generator for Knockout + Bootstrap",
   "license": "MIT",
   "main": "app/index.js",
