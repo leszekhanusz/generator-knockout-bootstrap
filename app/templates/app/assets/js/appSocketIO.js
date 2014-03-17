@@ -27,8 +27,7 @@ define(['socket.io-client'
 
         var emit = socket.emit;
         socket.emit = function () {
-          var args = Array.prototype.slice.call(arguments);
-          console.log('==> ', args);
+          console.log('==> ', arguments[0], arguments[1]);
           emit.apply(socket, arguments);
         };
 
@@ -37,7 +36,7 @@ define(['socket.io-client'
         });
 
         socket.on('*', function (event, data) {
-          console.log('<== ' + event, data);
+          console.log('<== ', event, data);
         });
       })();
     }
