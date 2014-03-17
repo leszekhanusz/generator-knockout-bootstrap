@@ -91,10 +91,6 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       message: 'What is the name of your app?',
       default: this.appname
     }, {
-      name: 'appdescription',
-      message: 'Description:',
-      default: 'An awesome knockout.js bootstrap app'
-    }, {
       type: 'confirm',
       name: 'jade',
       message: 'Would you like to use the jade templating engine (http://jade-lang.com) ?',
@@ -123,7 +119,6 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (answers) {
       this.appname = answers.appname;
-      this.appdescription = answers.appdescription;
       
       // Include jade in all case (needed to generate the html
       // with all the necessary options).

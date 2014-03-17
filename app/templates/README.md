@@ -1,7 +1,5 @@
 # <%= appname %>
 
-<%= appdescription %>
-
 ## Getting Started
 
 Make sure you have the latest packages installed
