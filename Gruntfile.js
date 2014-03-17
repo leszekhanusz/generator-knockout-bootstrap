@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
 
-  // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     changelog: {
@@ -14,8 +14,6 @@ module.exports = function(grunt) {
       }
     }
   });
-
-  grunt.loadNpmTasks('grunt-release');
 
   grunt.registerTask('message', function() {
     grunt.log.writeln("use grunt release:{patch|minor|major}");
