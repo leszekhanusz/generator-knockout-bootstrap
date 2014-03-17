@@ -3,6 +3,11 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    changelog: {
+      options: {
+        dest: 'CHANGELOG.md'
+      }
+    },
     release: {
       options: {
         tagName: 'v<%= version %>'
