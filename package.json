@@ -36,7 +36,8 @@
     "chalk": "~0.4.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "grunt-release": "^0.7.0"
   },
   "peerDependencies": {
     "generator-mocha": ">=0.1.1",
