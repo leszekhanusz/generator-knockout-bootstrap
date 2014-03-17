@@ -1,14 +1,14 @@
 {
   "name": "<%= _.slugify(appname) %>",
   "dependencies": {
-    "requirejs": "2.x",
-    "jquery": "2.x",
-    "knockout.js": "3.x",<% if (includeSammy) { %>
-    "sammy": "0.x",<% } %><% if (includeFontAwesome) { %>
-    "font-awesome": "4.x",<% } %><% if (includeSocketIO) { %>
-    "socket.io-client": "~0.9.16",<% } %><% if (includeValidation) { %>
+    "requirejs": "^2.1.11",
+    "jquery": "^2.1.0",
+    "knockout.js": "^3.0.0",<% if (includeSammy) { %>
+    "sammy": "^0.7.5",<% } %><% if (includeFontAwesome) { %>
+    "font-awesome": "^4.0.3",<% } %><% if (includeSocketIO) { %>
+    "socket.io-client": "^0.9.16",<% } %><% if (includeValidation) { %>
     "knockout.validation": "^1.0.2",<% } %>
-    "bootstrap-sass": "3.x"
+    "bootstrap-sass": "^3.0.2"
   }
 }
 
