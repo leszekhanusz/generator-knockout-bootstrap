@@ -1,0 +1,21 @@
+$green-icon: #04B431;
+$orange-icon: #DF7401;
+
+.connection-icon {
+    i {
+      padding-right: 5px;
+    }
+
+    .connected {
+      color: $green-icon !important;
+    }
+
+    .reconnecting {
+      color: $orange-icon !important;
+    }
+    
+    .loading {
+      color: $green-icon !important;
+    }
+}
+

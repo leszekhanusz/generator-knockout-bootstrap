@@ -161,6 +161,36 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
+  askForWidget: function () {
+    if(this.includeSocketIO) {
+      var done = this.async();
+
+      var prompts = [{
+        type: 'confirm',
+        name: 'connectionWidget',
+        message: 'Do you want a widget indicating the status of the socket.io connection in the menu bar?',
+        default: true
+      }];
+
+      this.prompt(prompts, function (answers) {
+        this.includeConnectionWidget = answers.connectionWidget;
+
+        if (!this.options.includeConnectionWidget) {
+          this.options.includeConnectionWidget = this.includeConnectionWidget;
+          this.config.set('includeConnectionWidget', this.includeConnectionWidget);
+        }
+
+        done();
+      }.bind(this));
+    } else {
+      this.includeConnectionWidget = false;
+      if (!this.options.includeConnectionWidget) {
+        this.options.includeConnectionWidget = false;
+        this.config.set('includeConnectionWidget', false);
+      }
+    }
+  },
+
   app: function () {
     this.mkdir(this.env.options.appPath);
     this.mkdir(this.env.options.appPath + '/assets');
@@ -193,6 +223,12 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       this.mkdir('server');
       this.template('server/server.js');
       this.template('app/jade/partials/_socketio_example.jade', this.env.options.appPath + '/jade/partials/_socketio_example.jade');
+    }
+
+    if(this.includeConnectionWidget) {
+      this.template('app/jade/partials/_rightmenutabs.jade', this.env.options.appPath + '/jade/partials/_rightmenutabs.jade');
+      this.template('app/assets/js/models/connectionViewModel.js', this.env.options.appPath + '/assets/js/models/connectionViewModel.js');
+      this.copy('app/assets/scss/_connection.scss', this.env.options.appPath + '/assets/scss/_connection.scss');
     }
 
     this.copy('test/index.html');

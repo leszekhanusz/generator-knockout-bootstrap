@@ -3,9 +3,10 @@
 /* global define:true*/
 define(['jquery',
     'knockout'<% if (includeSammy) { %>,
-    '../../../assets/js/models/sammyViewModel.js'<% } %><% if (includeValidation) { %>,
+    '../../../assets/js/models/sammyViewModel.js'<% } %><% if (includeConnectionWidget) { %>,
+    '../../../assets/js/models/connectionViewModel.js'<% } %><% if (includeValidation) { %>,
     'knockout.validation'<% } %>
-    ], function ($, ko<% if(includeSammy) { %>, SammyViewModel<% } %>) {
+    ], function ($, ko<% if(includeSammy) { %>, SammyViewModel<% } %><% if(includeConnectionWidget) { %>, ConnectionViewModel<% } %>) {
   return function () {
     var self = this;
 <% if (includeValidation) { %>
@@ -31,6 +32,9 @@ define(['jquery',
       minLength: 3
     })<% } %>;
     self.messageReceived = ko.observable('');
-    <% } %>
+    <% } %><% if(includeConnectionWidget) { %>
+
+    // Keeping connection status in model
+    self.connection = new ConnectionViewModel();<% } %>
   };
 });

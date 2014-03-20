@@ -26,7 +26,8 @@ html(lang='en')
             span.icon-bar
           a.navbar-brand(href='#') <%= appname %>
         .collapse.navbar-collapse
-          include _leftmenutabs.jade
+          include _leftmenutabs.jade<% if (includeConnectionWidget) { %>
+          include _rightmenutabs.jade<% } %>
         //
           /.nav-collapse 
     block maincontainer

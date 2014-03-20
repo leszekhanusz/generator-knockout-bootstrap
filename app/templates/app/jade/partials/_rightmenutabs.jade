@@ -1,0 +1,5 @@
+ul.nav.navbar-nav.navbar-right
+  li.pull-right.connection-icon
+    a(data-bind="css: connection.iconCSS, attr: {title: connection.title}")<% if (includeFontAwesome) { %>
+      i.fa.fa-exchange<% } %>
+      span(data-bind="text: connection.toString")

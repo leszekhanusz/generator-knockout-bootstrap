@@ -46,6 +46,29 @@ define(['socket.io-client'
     socket.on('message', function (data) {
       UI.messageReceived(UI.messageReceived() + data.message + '\n');
     });
+<% if (includeConnectionWidget) { %>
+    // The connection status is saved in the model
+    socket.on('connect', function () {
+      UI.connection.state('connect');
+    });
+
+    socket.on('connecting', function (data) {
+      UI.connection.connectionMethod(data);
+      UI.connection.state('connecting');
+    });
+
+    socket.on('disconnect', function () {
+      UI.connection.state('disconnect');
+    });
+
+    socket.on('reconnecting', function (data) {
+      UI.connection.setReconnectDelay(parseInt(data) / 1000);
+      UI.connection.state('reconnecting');
+    });
+
+    socket.on('reconnect', function () {
+      UI.connection.state('reconnect');
+    });<% } %>
 
     // Actions
 
