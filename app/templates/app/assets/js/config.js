@@ -6,7 +6,8 @@ require.config({
     'jquery': '../../bower_components/jquery/dist/jquery',<% if (includeSammy) { %>
     'sammy': '../../bower_components/sammy/lib/sammy',<% } %><% if (includeSocketIO) { %>
     'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',<% } %><% if (includeValidation) { %>
-    'knockout.validation': '../../bower_components/knockout.validation/Dist/knockout.validation',<% } %>
+    'knockout.validation': '../../bower_components/knockout.validation/Dist/knockout.validation',<% } %><% if (includeBootbox) { %>
+    'bootbox': '../../bower_components/bootbox/bootbox',<% } %>
     'jquery.bootstrap': '../../bower_components/bootstrap-sass/dist/js/bootstrap'
   },
   shim: {

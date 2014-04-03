@@ -52,6 +52,7 @@ The generator will ask if you want the following options:
 * [Font Awesome icons](http://fortawesome.github.io/Font-Awesome)
 * [Socket.io (full stack)](http://socket.io)
 * [Knockout.validation](https://github.com/Knockout-Contrib/Knockout-Validation)
+* [Bootbox](http://bootboxjs.com)
 
 ## Getting To Know Yeoman
 

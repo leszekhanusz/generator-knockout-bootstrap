@@ -2,8 +2,8 @@
 
 /* global io:true*/
 /* global define:true*/
-define(['socket.io-client'
-    ], function () {
+define([<% if (includeBootbox) { %>'bootbox',<% } %>'socket.io-client'
+    ], function (<% if (includeBootbox) { %>bootbox<% } %>) {
   return function (UI) {
     var self = this;
 
@@ -73,10 +73,13 @@ define(['socket.io-client'
     // Actions
 
     self.sendBroadcastMessage = function () {<% if (includeValidation) { %>
-      if (UI.message.isValid()) {
-        socket.emit('send_message', {message: self.UI.message()});
-      }<% } else { %>
-      socket.emit('send_message', {message: self.UI.message()});<% } %>
+      if (UI.message.isValid()) {<% } %><% if (includeBootbox) { %>
+<% if (includeValidation) { %>  <% } %>      bootbox.confirm('Are you sure?', function (result) {
+<% if (includeValidation) { %>  <% } %>        if (result) {<% } %>
+<% if (includeValidation) { %>  <% } %><% if (includeBootbox) { %>    <% } %>      socket.emit('send_message', {message: self.UI.message()});<% if (includeBootbox) { %>
+<% if (includeValidation) { %>  <% } %>        }
+<% if (includeValidation) { %>  <% } %>      });<% } %><% if (includeValidation) { %>
+      }<% } %>
     };
   };
 });

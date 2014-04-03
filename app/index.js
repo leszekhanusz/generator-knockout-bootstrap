@@ -115,6 +115,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       name: 'validation',
       message: 'Would you like to use the knockout.validation library ?',
       default: true
+    }, {
+      type: 'confirm',
+      name: 'bootbox',
+      message: 'Would you like to use the bootbox library (http://bootboxjs.com) ?',
+      default: true
     }];
 
     this.prompt(prompts, function (answers) {
@@ -130,6 +135,7 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       this.includeFontAwesome = answers.fontAwesome;
       this.includeSocketIO = answers.socketIO;
       this.includeValidation = answers.validation;
+      this.includeBootbox = answers.bootbox;
 
       if (!this.options.includeJade) {
         // See comment above, here the real includeJade is saved
@@ -155,6 +161,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       if (!this.options.includeValidation) {
         this.options.includeValidation = this.includeValidation;
         this.config.set('includeValidation', this.includeValidation);
+      }
+
+      if (!this.options.includeBootbox) {
+        this.options.includeBootbox = this.includeBootbox;
+        this.config.set('includeBootbox', this.includeBootbox);
       }
 
       done();
