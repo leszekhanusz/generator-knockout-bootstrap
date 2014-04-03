@@ -8,7 +8,8 @@
     "font-awesome": "^4.0.3",<% } %><% if (includeSocketIO) { %>
     "socket.io-client": "^0.9.16",<% } %><% if (includeValidation) { %>
     "knockout.validation": "^1.0.2",<% } %><% if (includeBootbox) { %>
-    "bootbox": "^4.2.0",<% } %>
+    "bootbox": "^4.2.0",<% } %><% if (includeNotify) { %>
+    "notifyjs-dist": "^0.3.2",<% } %>
     "bootstrap-sass": "^3.0.2"
   }
 }

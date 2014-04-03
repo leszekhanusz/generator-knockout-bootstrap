@@ -120,6 +120,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       name: 'bootbox',
       message: 'Would you like to use the bootbox library (http://bootboxjs.com) ?',
       default: true
+    }, {
+      type: 'confirm',
+      name: 'notify',
+      message: 'Would you like to use the notify.js library (http://notifyjs.com) ?',
+      default: true
     }];
 
     this.prompt(prompts, function (answers) {
@@ -136,6 +141,7 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       this.includeSocketIO = answers.socketIO;
       this.includeValidation = answers.validation;
       this.includeBootbox = answers.bootbox;
+      this.includeNotify = answers.notify;
 
       if (!this.options.includeJade) {
         // See comment above, here the real includeJade is saved
@@ -166,6 +172,11 @@ var KnockoutBootstrapSammyGenerator = yeoman.generators.Base.extend({
       if (!this.options.includeBootbox) {
         this.options.includeBootbox = this.includeBootbox;
         this.config.set('includeBootbox', this.includeBootbox);
+      }
+
+      if (!this.options.includeNotify) {
+        this.options.includeNotify = this.includeNotify;
+        this.config.set('includeNotify', this.includeNotify);
       }
 
       done();

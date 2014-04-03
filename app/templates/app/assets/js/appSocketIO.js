@@ -2,8 +2,11 @@
 
 /* global io:true*/
 /* global define:true*/
-define([<% if (includeBootbox) { %>'bootbox',<% } %>'socket.io-client'
-    ], function (<% if (includeBootbox) { %>bootbox<% } %>) {
+define([<% if (includeBootbox) { %>'bootbox',
+<% } %><% if (includeNotify) { %>        'jquery',
+        'notify-bootstrap',
+<% } %>        'socket.io-client'
+    ], function (<% if (includeBootbox) { %>bootbox<% } %><% if (includeNotify) { %>, $<% } %>) {
   return function (UI) {
     var self = this;
 
@@ -76,7 +79,8 @@ define([<% if (includeBootbox) { %>'bootbox',<% } %>'socket.io-client'
       if (UI.message.isValid()) {<% } %><% if (includeBootbox) { %>
 <% if (includeValidation) { %>  <% } %>      bootbox.confirm('Are you sure?', function (result) {
 <% if (includeValidation) { %>  <% } %>        if (result) {<% } %>
-<% if (includeValidation) { %>  <% } %><% if (includeBootbox) { %>    <% } %>      socket.emit('send_message', {message: self.UI.message()});<% if (includeBootbox) { %>
+<% if (includeValidation) { %>  <% } %><% if (includeBootbox) { %>    <% } %>      socket.emit('send_message', {message: self.UI.message()});<% if (includeNotify) { %>
+<% if (includeValidation) { %>  <% } %><% if (includeBootbox) { %>    <% } %>      $.notify('message sent', 'success');<% } %><% if (includeBootbox) { %>
 <% if (includeValidation) { %>  <% } %>        }
 <% if (includeValidation) { %>  <% } %>      });<% } %><% if (includeValidation) { %>
       }<% } %>

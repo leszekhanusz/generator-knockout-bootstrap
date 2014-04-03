@@ -7,7 +7,9 @@ require.config({
     'sammy': '../../bower_components/sammy/lib/sammy',<% } %><% if (includeSocketIO) { %>
     'socket.io-client': '../../bower_components/socket.io-client/dist/socket.io',<% } %><% if (includeValidation) { %>
     'knockout.validation': '../../bower_components/knockout.validation/Dist/knockout.validation',<% } %><% if (includeBootbox) { %>
-    'bootbox': '../../bower_components/bootbox/bootbox',<% } %>
+    'bootbox': '../../bower_components/bootbox/bootbox',<% } %><% if (includeNotify) { %>
+    'notify': '../../bower_components/notifyjs-dist/notify',
+    'notify-bootstrap': '../../bower_components/notifyjs-dist/styles/bootstrap/notify-bootstrap',<% } %>
     'jquery.bootstrap': '../../bower_components/bootstrap-sass/dist/js/bootstrap'
   },
   shim: {
@@ -19,6 +21,12 @@ require.config({
     }<% } %><% if(includeSocketIO) { %>,
     'socket.io-client': {
       exports: 'io'
+    }<% } %><% if(includeNotify) { %>,
+    'notify': {
+      deps: ['jquery']
+    },
+    'notify-bootstrap': {
+      deps: ['notify']
     }<% } %>
   },
   map: {

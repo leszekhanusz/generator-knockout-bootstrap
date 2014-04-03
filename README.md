@@ -53,6 +53,7 @@ The generator will ask if you want the following options:
 * [Socket.io (full stack)](http://socket.io)
 * [Knockout.validation](https://github.com/Knockout-Contrib/Knockout-Validation)
 * [Bootbox](http://bootboxjs.com)
+* [Notify.js](http://notifyjs.com)
 
 ## Getting To Know Yeoman
 
