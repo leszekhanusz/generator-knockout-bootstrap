@@ -3,7 +3,7 @@ $fa-font-path: "../fonts";
 @import 'font-awesome/scss/font-awesome';<% } %>
 
 $icon-font-path: "../fonts";
-@import 'bootstrap-sass/lib/bootstrap';
+@import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
 
 // Put all your custom style there
 @import 'app'

@@ -59,7 +59,7 @@ module.exports = function (grunt) {
         overwrite: true,
         replacements: [{
           from: /\$icon\-font\-path:.*/g,
-          to: '$icon-font-path: \'../../bower_components/bootstrap-sass/fonts\';'<% if (includeFontAwesome) { %>
+          to: '$icon-font-path: \'../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap\';'<% if (includeFontAwesome) { %>
         }, {
           from: /\$fa\-font\-path:.*/g,
           to: '$fa-font-path: \'../../bower_components/font-awesome/fonts\';'<% } %>

@@ -10,7 +10,7 @@ require.config({
     'bootbox': '../../bower_components/bootbox/bootbox',<% } %><% if (includeNotify) { %>
     'notify': '../../bower_components/notifyjs-dist/notify',
     'notify-bootstrap': '../../bower_components/notifyjs-dist/styles/bootstrap/notify-bootstrap',<% } %>
-    'jquery.bootstrap': '../../bower_components/bootstrap-sass/dist/js/bootstrap'
+    'jquery.bootstrap': '../../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap'
   },
   shim: {
     'jquery.bootstrap': {
