@@ -1,3 +1,19 @@
+<a name="0.3.0"></a>
+## 0.3.0 (2014-08-15)
+
+
+#### Bug Fixes
+
+* **app:** Remove deprecated express function 'app.configure' ([11971308](http://github.com/leszekhanusz/generator-knockout-bootstrap/commit/1197130814b90ddecc76b4618aa401ba47e433c1))
+
+
+#### Features
+
+* **app:**
+  * Adding Notify.js option ([18d46769](http://github.com/leszekhanusz/generator-knockout-bootstrap/commit/18d4676965d13745a9046130df27fb64ab38876b))
+  * Adding Bootbox.js option ([4201f85f](http://github.com/leszekhanusz/generator-knockout-bootstrap/commit/4201f85f6e85bc617bbd2a23ea26115256f42f9b))
+
+
 <a name="0.2.0"></a>
 ## 0.2.0 (2014-03-20)
 
